@@ -7,6 +7,7 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLInt,
+  GraphQLList,
 } = graphql;
 
 var books = [
@@ -18,12 +19,20 @@ var books = [
     id: '3',
     authorId: '3',
   },
+  { name: 'Get Epic Shit Done', genre: 'Motivational', id: '4', authorId: '2' },
+  {
+    name: '50 Years In The Making',
+    genre: 'Biography',
+    id: '5',
+    authorId: '3',
+  },
+  { name: 'Did Epic Shit', genre: 'Motivational', id: '6', authorId: '2' },
 ];
 
 var authors = [
   { name: 'Patrick Rothfuss', age: 44, id: '1' },
   { name: 'Ankur Warikoo', age: 42, id: '2' },
-  { name: 'Morgan Housel', age: 34, id: '2' },
+  { name: 'Morgan Housel', age: 34, id: '3' },
 ];
 
 const BookType = new GraphQLObjectType({
@@ -47,6 +56,13 @@ const AuthorType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        console.log(parent);
+        return _.filter(books, { authorId: parent.id });
+      },
+    },
   }),
 });
 
