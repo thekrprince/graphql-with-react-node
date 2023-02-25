@@ -1,31 +1,54 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_AUTHORS } from '../../queries/queries';
+import React, { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_AUTHORS, ADD_BOOK_MUTATION } from '../../queries/queries';
 
 const AddBook = () => {
   const { loading, data } = useQuery(GET_AUTHORS);
-
-  console.log(data);
+  const [addBook, { data: d, loading: l }] = useMutation(ADD_BOOK_MUTATION);
+  const [bookName, setBookName] = useState('');
+  const [genre, setGenre] = useState('');
+  const [authorId, setAuthorId] = useState(null);
 
   const addBookHandler = (e) => {
     e.preventDefault();
-    console.log('submitted');
+    addBook({ variables: { name: bookName, genre, authorId } });
+    setBookName('');
+    setGenre('');
+    setAuthorId(null);
   };
+
+  console.log(d);
 
   return (
     <form onSubmit={addBookHandler} className="form">
       <h4>Add a Book</h4>
       <div>
         <label htmlFor="bname">Book Name:</label>
-        <input type="text" id="bname" required />
+        <input
+          type="text"
+          id="bname"
+          value={bookName}
+          onChange={(e) => setBookName(e.target.value)}
+          required
+        />
       </div>
       <div>
         <label htmlFor="genre">Genre:</label>
-        <input type="text" id="genre" required />
+        <input
+          type="text"
+          id="genre"
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+          required
+        />
       </div>
       <div>
         <label htmlFor="authors">Select Author:</label>
-        <select id="authors">
+        <select
+          id="authors"
+          value={authorId}
+          onChange={(e) => setAuthorId(e.target.value)}
+        >
           <option>Select Author</option>
           {loading && <option disabled>Loading Authors...</option>}
           {data &&
