@@ -1,5 +1,43 @@
+import { gql, useQuery } from '@apollo/client';
+
+const GET_BOOKS = gql`
+  {
+    books {
+      name
+      genre
+      id
+    }
+  }
+`;
+
 const BookList = () => {
-  return <div>Book List</div>;
+  const { loading, data } = useQuery(GET_BOOKS);
+  console.log(loading);
+  console.log(data);
+
+  const displayBooks = () => {
+    if (loading) {
+      return <p>Loading Books...</p>;
+    } else {
+      return (
+        <div>
+          {data.books.map((book) => (
+            <ul key={book.id}>
+              <li>{book.name}</li>
+              <li>{book.genre}</li>
+            </ul>
+          ))}
+        </div>
+      );
+    }
+  };
+
+  return (
+    <section>
+      <h4>Book List</h4>
+      {displayBooks()}
+    </section>
+  );
 };
 
 export default BookList;
