@@ -26,7 +26,7 @@ const BookList = () => {
   };
 
   return (
-    <section>
+    <section className="booklist">
       <h4>Book List</h4>
       {displayBooks()}
       <BookDetails bookId={bookId} />

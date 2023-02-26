@@ -24,9 +24,9 @@ const AddBook = () => {
   };
 
   return (
-    <form onSubmit={addBookHandler} className="form">
+    <form onSubmit={addBookHandler}>
       <h4>Add a Book</h4>
-      <div>
+      <div className="field">
         <label htmlFor="bname">Book Name:</label>
         <input
           type="text"
@@ -36,7 +36,7 @@ const AddBook = () => {
           required
         />
       </div>
-      <div>
+      <div className="field">
         <label htmlFor="genre">Genre:</label>
         <input
           type="text"
@@ -46,7 +46,7 @@ const AddBook = () => {
           required
         />
       </div>
-      <div>
+      <div className="field">
         <label htmlFor="authors">Select Author:</label>
         <select
           id="authors"

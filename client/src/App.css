@@ -1,4 +1,86 @@
 .App {
-  /* text-align: center; */
-  margin-left: 5rem;
+  width: 60%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.App h1 {
+  text-align: center;
+}
+
+/* Book List */
+.booklist {
+  padding: 0;
+}
+
+.booklist ul {
+  display: inline-block;
+}
+
+.booklist li {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid #880e4f;
+  border-radius: 4px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  color: #880e4f;
+}
+
+/* Add Book */
+
+form {
+  background: #fff;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+}
+
+form .field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+form label {
+  text-align: right;
+}
+
+form select, form input {
+  margin: 4px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+form button {
+  color: #fff;
+  font-size: 2em;
+  background: #ad1457;
+  border: 0;
+  padding: 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* Book Details */
+.book-details {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: #ad1457;
+  padding: 30px;
+  overflow: auto;
+  box-shadow: -2px -3px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.book-details li {
+  color: #fff;
 }
